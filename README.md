@@ -30,16 +30,17 @@ This Docker creates a simple SSH tunnel over a server. It is very useful when yo
     version: '2'
     services:
       nfs-tunnel:
-        image: guysoft/docker-ssh-double-tunnel1
+        image: guysoft/docker-ssh-double-tunnel
         volumes:
-          - $HOME/.ssh:/root/ssh:ro
+          - /path/to/id_rsa:/root/ssh/id_rsa:ro
         environment:
-          TUNNEL_HOST: localhost
-          REMOTE_HOST: nfs-server-ip
+          TUNNEL_HOST: user@remote_ssh_host
+          REMOTE_HOST: remote_nfs_server
           LOCAL_PORT1: 111
           REMOTE_PORT1: 111
           LOCAL_PORT2: 2049
           REMOTE_PORT2: 2049
+
 ```
 
 5. Run `docker-compose up -d`
