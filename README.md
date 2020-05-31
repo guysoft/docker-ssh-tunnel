@@ -29,15 +29,17 @@ This Docker creates a simple SSH tunnel over a server. It is very useful when yo
 ```
     version: '2'
     services:
-      mysql:
-        image: cagataygurturk/docker-ssh-tunnel:0.0.1
+      nfs-tunnel:
+        image: guysoft/docker-ssh-double-tunnel1
         volumes:
           - $HOME/.ssh:/root/ssh:ro
         environment:
-          TUNNEL_HOST: mysql-tunnel
-          REMOTE_HOST: tunneled-sql.corporate.internal.tld
-          LOCAL_PORT: 3306
-          REMOTE_PORT: 3306
+          TUNNEL_HOST: localhost
+          REMOTE_HOST: nfs-server-ip
+          LOCAL_PORT1: 111
+          REMOTE_PORT1: 111
+          LOCAL_PORT2: 2049
+          REMOTE_PORT2: 2049
 ```
 
 5. Run `docker-compose up -d`
